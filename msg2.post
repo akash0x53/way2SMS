@@ -1,0 +1,16 @@
+POST /quicksms.action HTTP/1.1
+Host: site4.way2sms.com
+Proxy-Connection: keep-alive
+Content-Length: 105
+Cache-Control: max-age=0
+Origin: http://site4.way2sms.com
+User-Agent: Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11
+Content-Type: application/x-www-form-urlencoded
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Referer: http://site4.way2sms.com/jsp/InstantSMS.jsp
+Accept-Encoding: gzip,deflate,sdch
+Accept-Language: en-US,en;q=0.8
+Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.3
+Cookie: __gads=ID=b15250aafecdc737:T=1355214097:S=ALNI_MYrKUe01lLEb_cEdPfUIOF9FjlHdg; JSESSIONID=A07~67FFF847863AACF0AE75E9E898EF8B5F.w807
+
+HiddenAction=instantsms&catnamedis=Birthday&Action=sdf44557df54&chkall=on&MobNo=8055737517&textArea=Hello
