@@ -1,5 +1,6 @@
 #! /usr/bin/env python
 import gtk
+import post_req
 
 class Login():
 
@@ -9,7 +10,20 @@ class Login():
 
 		self.login=self.builder.get_object("login")
 
-			
+		usr=self.builder.get_object("usr")
+		pwd=self.builder.get_object("pwd")
+		
+		try:
+			pass_file=open(".pass","r")
+			usr.set_text(pass_file.read().rsplit()[0])
+			pass_file.close()
+		except IOError:
+			print('file cant open')
+
+		finally:
+			pass_file.close()
+
+
 		res=self.login.run()
 
 		if(res==1):

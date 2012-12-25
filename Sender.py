@@ -2,7 +2,11 @@
 
 import pygtk
 import gtk
+
+
 import About
+import Login
+import Credentials
 
 
 
@@ -18,14 +22,30 @@ class Temp():
 
 		self.abt_menu=self.build.get_object("about")
 		self.abt_menu.connect("activate",self.show_about)
+
+		self.login=self.build.get_object("login_menu")
+		self.login.connect("activate",self.login_box)
+
+		self.cred=self.build.get_object("credentials")
+		self.cred.connect("activate",self.show_login_save)
+
+		contacts=self.build.get_object("contact_list")
 	
 
 		self.win=self.build.get_object("main_win")
 		self.win.connect("destroy",gtk.main_quit)
 		self.win.show()
 
+
 	def show_about(self,event):
 		abt=About.About()
+
+	def login_box(slef,event):
+		log=Login.Login()
+	
+	def show_login_save(self,event):
+		log_save=Credentials.Credentials()
+
 
 
 
