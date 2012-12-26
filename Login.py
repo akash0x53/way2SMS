@@ -4,12 +4,13 @@ import gtk
 
 from way2sms import *
 from Connect import Connect
+from Contacts import Contacts
 
 class Login():
 
 	
 
-	def __init__(self,btn):
+	def __init__(self,btn,c_list):
 
 		self.builder=gtk.Builder()
 		self.builder.add_from_file("./ui/w2s.glade")
@@ -23,7 +24,9 @@ class Login():
 		msg_box.set_markup("Invalid Mobile Number or Password")
 
 		Login.btn=btn
-		
+		Login.c_list=c_list
+
+
 		#try:
 		#	pass_file=open(".pass","r")
 		#	usr.set_text(pass_file.read().rsplit()[0])
@@ -38,15 +41,19 @@ class Login():
 
 		if(res==1):
 			con=Connect()
+			
 			state=con.login(usr.get_text(),pwd.get_text())
 
 			if(state==login_failed):
 				msg_box.run()
 				msg_box.hide()
 			elif(state==login_success):
+				contact=Contacts(con.getContacts(),Login.c_list)
+				contact.build_list()
 				Login.btn.set_sensitive(True)
-
 				
+				#fetch contatcs data
+	
 			
 		elif(res==2):
 			pass

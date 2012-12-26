@@ -1,21 +1,27 @@
 #! /usr/bin/env python
 
 from bs4 import BeautifulSoup as bs
+from way2sms import __contact_list__
 
 
 class Contacts():
 
-	def __init__(self,html_data):
+	def __init__(self,html_data,c_list):
 		#creating soup
 		Contacts.soup=bs(''.join(html_data))
+
+		Contacts.c_list=c_list
 		
 	def extract_name(self):
 		names=Contacts.soup.findAll(attrs={"name":"Quckvalue"})
 		names=str(names[0]['value'])
 		name_list=names.split("*")
-				
+		
+
 		for n in name_list:
 			print n,"\n"
+
+		return name_list
 
 	def extract_number(self):
 		numbers=Contacts.soup.findAll(attrs={"name":"Qucktitle"})
@@ -24,4 +30,20 @@ class Contacts():
 
 		for n in number_list:
 			print n,"\n"
+
+		return number_list
+	
+	def build_list(self):
+
+		list1=self.extract_name()
+		list2=self.extract_number()
+
+			
+		for i in xrange(1,len(list1)):
+			Contacts.c_list.append([str(list1[i]),str(list2[i])])
+
+
+
+
+
 

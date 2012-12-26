@@ -14,4 +14,5 @@ login_success=1
 
 
 __send_button__=None
+__contact_list__=None
 
