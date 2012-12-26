@@ -3,13 +3,10 @@
 import pygtk
 import gtk
 
-from way2sms import __send_button__
 
 import About
 import Login
 #import Credentials
-
-
 
 class Temp():
 
@@ -30,11 +27,16 @@ class Temp():
 		#self.cred=self.build.get_object("credentials")
 		#self.cred.connect("activate",self.show_login_save)
 
-		contacts=self.build.get_object("contact_list")
-
+		Temp.contacts=self.build.get_object("contact_list")
+		
 		Temp.snd_btn=self.build.get_object("send_msg")
 		Temp.snd_btn.set_sensitive(False)
-	
+
+		Temp.number_txt=self.build.get_object("enter_mobile_no")
+		Temp.msg_txt=self.build.get_object("enter_msg")
+
+		clr_btn=self.build.get_object("clr_all")
+		clr_btn.connect("clicked",self.clear_all)
 
 		self.win=self.build.get_object("main_win")
 		self.win.connect("destroy",gtk.main_quit)
@@ -45,10 +47,20 @@ class Temp():
 		abt=About.About()
 
 	def login_box(slef,event):
-		log=Login.Login(Temp.snd_btn)
+		log=Login.Login(Temp.snd_btn,Temp.contacts)
 	
 	def show_login_save(self,event):
 		log_save=Credentials.Credentials()
+
+
+	def clear_all(self,event):
+		Temp.number_txt.set_text("")
+		txt=gtk.TextBuffer()
+		txt.set_data("",0)
+		Temp.msg_txt.set_buffer(txt)
+
+
+
 
 
 

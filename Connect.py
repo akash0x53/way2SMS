@@ -62,8 +62,6 @@ class Connect():
 		except IOError:
 			print 'Network Error.!'
 
-
-	
 	
 
 	def getContacts(self):
@@ -75,14 +73,13 @@ class Connect():
 if(__name__=='__main__'):
 
 	c=Connect()
-	#g=Contacts(c.getContacts())
-
-	#g.extract_name()
-	#g.extract_number()
+	
 
 	print c.login("8055737517","lovetakesover")
-	#print c.getContacts()
-	#print c.getContacts()
+	g=Contacts(c.getContacts())
+
+	g.extract_name()
+	g.extract_number()
 	#print g
 
 
