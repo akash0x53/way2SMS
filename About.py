@@ -7,8 +7,8 @@ class About():
 	def __init__(self):
 
 		builder=gtk.Builder()
-		builder.add_from_file("./ui/about.glade")
-		abt_dialog=builder.get_object("about")
+		builder.add_from_file("./ui/w2s.glade")
+		abt_dialog=builder.get_object("about_dialog")
 
 		abt_dialog.run()
 		abt_dialog.hide()

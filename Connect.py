@@ -29,6 +29,7 @@ import urlparse
 #		}
 #
 
+user_agent="Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11"
 
 class Connect():
 
@@ -40,7 +41,10 @@ class Connect():
 		self.redirect=ul2.HTTPRedirectHandler()
 		proxies=ul2.ProxyHandler(self.proxy)
 
-		Connect.opener=ul2.build_opener(ul2.HTTPCookieProcessor(__cookies__),self.redirect,proxies)
+		Connect.opener=ul2.build_opener(ul2.HTTPCookieProcessor(__cookies__),self.redirect)
+		Connect.opener.addheaders=[('User-agent',user_agent),
+					('Accept','text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'),
+					('Accept-Language','en-US,en;q=0.8')]
 
 	
 	def login(self,usr,pwd):
@@ -84,7 +88,7 @@ if(__name__=='__main__'):
 	
 
 	print c.login("8055737517","lovetakesover")
-	print c.send_msg("8055737517","hello from App")
+	print c.send_msg("8055737517","ok.. byee")
 	c.logout()
 
 	#g=Contacts(c.getContacts())
