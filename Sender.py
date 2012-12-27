@@ -8,6 +8,8 @@ import About
 import Login
 #import Credentials
 
+count=140
+
 class Temp():
 
 	def __init__(self):
@@ -34,7 +36,10 @@ class Temp():
 
 		Temp.number_txt=self.build.get_object("enter_mobile_no")
 		Temp.msg_txt=self.build.get_object("enter_msg")
-
+		Temp.msg_txt.connect("key-press-event",self.check_chars)
+	
+		Temp.msg_lbl=self.build.get_object("msg_lbl")
+		
 		clr_btn=self.build.get_object("clr_all")
 		clr_btn.connect("clicked",self.clear_all)
 
@@ -51,6 +56,16 @@ class Temp():
 	
 	def show_login_save(self,event):
 		log_save=Credentials.Credentials()
+
+	def check_chars(self,event,data):
+		global count
+		buf=""
+		Temp.msg_txt.get_buffer()
+		print buf
+		count-=len(buf)
+
+		Temp.msg_lbl.set_text("Enter Text Message\n"+str(count)+" chars left")
+		
 
 
 	def clear_all(self,event):
