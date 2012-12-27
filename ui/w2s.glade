@@ -13,6 +13,7 @@
     <property name="default_height">260</property>
     <property name="type_hint">dialog</property>
     <property name="skip_taskbar_hint">True</property>
+    <property name="transient_for">main_win</property>
     <property name="has_separator">True</property>
     <property name="program_name">Way2SMS-Desktop</property>
     <property name="version">1.0</property>
@@ -415,6 +416,7 @@ GNU General Public License for more details.
     <property name="height_request">228</property>
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Way2SMS Desktop App</property>
+    <property name="resizable">False</property>
     <property name="window_position">center</property>
     <property name="icon_name">mail-send</property>
     <child>
@@ -507,105 +509,71 @@ GNU General Public License for more details.
             <property name="border_width">5</property>
             <property name="spacing">10</property>
             <child>
-              <object class="GtkVBox" id="snd_msg">
+              <object class="GtkTable" id="table1">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="n_rows">3</property>
+                <property name="n_columns">2</property>
                 <child>
-                  <object class="GtkHBox" id="mobile_no">
+                  <placeholder/>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="label1">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="homogeneous">True</property>
-                    <child>
-                      <object class="GtkLabel" id="label1">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Mobile No</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">False</property>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkEntry" id="enter_mobile_no">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="invisible_char">•</property>
-                        <property name="activates_default">True</property>
-                        <property name="width_chars">10</property>
-                        <property name="primary_icon_activatable">False</property>
-                        <property name="secondary_icon_activatable">False</property>
-                        <property name="primary_icon_sensitive">True</property>
-                        <property name="secondary_icon_sensitive">True</property>
-                      </object>
-                      <packing>
-                        <property name="expand">True</property>
-                        <property name="fill">True</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
+                    <property name="label" translatable="yes">Mobile Number</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="msg_lbl">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Enter Text Message 
+(Max 140 chars)</property>
+                    <property name="justify">center</property>
                   </object>
                   <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">False</property>
-                    <property name="padding">5</property>
-                    <property name="position">0</property>
+                    <property name="top_attach">1</property>
+                    <property name="bottom_attach">2</property>
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkHBox" id="msg_entry">
+                  <object class="GtkEntry" id="enter_mobile_no">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="homogeneous">True</property>
-                    <child>
-                      <object class="GtkLabel" id="label2">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Enter Text (Max 140 chars)</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">False</property>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkScrolledWindow" id="scrolledwindow1">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="hscrollbar_policy">never</property>
-                        <property name="vscrollbar_policy">automatic</property>
-                        <child>
-                          <object class="GtkTextView" id="enter_msg">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="border_width">5</property>
-                            <property name="wrap_mode">char</property>
-                            <property name="accepts_tab">False</property>
-                          </object>
-                        </child>
-                      </object>
-                      <packing>
-                        <property name="expand">True</property>
-                        <property name="fill">True</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
+                    <property name="can_focus">True</property>
+                    <property name="max_length">10</property>
+                    <property name="invisible_char">•</property>
+                    <property name="primary_icon_activatable">False</property>
+                    <property name="secondary_icon_activatable">False</property>
+                    <property name="primary_icon_sensitive">True</property>
+                    <property name="secondary_icon_sensitive">True</property>
                   </object>
                   <packing>
-                    <property name="expand">True</property>
-                    <property name="fill">True</property>
-                    <property name="position">1</property>
+                    <property name="left_attach">1</property>
+                    <property name="right_attach">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkTextView" id="enter_msg">
+                    <property name="width_request">107</property>
+                    <property name="height_request">90</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="wrap_mode">word-char</property>
+                    <property name="accepts_tab">False</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="right_attach">2</property>
+                    <property name="top_attach">1</property>
+                    <property name="bottom_attach">2</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkHButtonBox" id="hbuttonbox1">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="spacing">33</property>
-                    <property name="homogeneous">True</property>
-                    <property name="layout_style">end</property>
+                    <property name="layout_style">spread</property>
                     <child>
                       <object class="GtkButton" id="send_msg">
                         <property name="label" translatable="yes">Send</property>
@@ -622,7 +590,7 @@ GNU General Public License for more details.
                     </child>
                     <child>
                       <object class="GtkButton" id="clr_all">
-                        <property name="label" translatable="yes">Clear</property>
+                        <property name="label" translatable="yes">Clear All</property>
                         <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
@@ -636,9 +604,10 @@ GNU General Public License for more details.
                     </child>
                   </object>
                   <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">False</property>
-                    <property name="position">2</property>
+                    <property name="left_attach">1</property>
+                    <property name="right_attach">2</property>
+                    <property name="top_attach">2</property>
+                    <property name="bottom_attach">3</property>
                   </packing>
                 </child>
               </object>
