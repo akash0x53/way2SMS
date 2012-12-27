@@ -9,7 +9,6 @@ from Contacts import Contacts
 class Login():
 
 	
-
 	def __init__(self,btn,c_list):
 
 		self.builder=gtk.Builder()
@@ -63,12 +62,16 @@ class Login():
 	def logout(self):
 		Login.con.logout()
 
+	def send_msg(self,number,msg):
+		Login.con.send_msg(number,msg)
+
+
 	
 		
 
 
-if(__name__=="__main__"):
-	l=Login()
-	gtk.main()
-	del l
+#if(__name__=="__main__"):
+#	l=Login()
+#	gtk.main()
+#	del l
 

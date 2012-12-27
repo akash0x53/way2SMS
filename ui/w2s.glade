@@ -524,10 +524,11 @@ GNU General Public License for more details.
                 <property name="n_rows">3</property>
                 <property name="n_columns">2</property>
                 <child>
-                  <object class="GtkLabel" id="label1">
+                  <object class="GtkLabel" id="name_lbl">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Mobile Number</property>
+                    <property name="justify">center</property>
                   </object>
                 </child>
                 <child>
