@@ -40,15 +40,15 @@ class Login():
 		res=self.login.run()
 
 		if(res==1):
-			con=Connect()
+			Login.con=Connect()
 			
-			state=con.login(usr.get_text(),pwd.get_text())
+			state=Login.con.login(usr.get_text(),pwd.get_text())
 
 			if(state==login_failed):
 				msg_box.run()
 				msg_box.hide()
 			elif(state==login_success):
-				contact=Contacts(con.getContacts(),Login.c_list)
+				contact=Contacts(Login.con.getContacts(),Login.c_list)
 				contact.build_list()
 				Login.btn.set_sensitive(True)
 				
@@ -59,6 +59,10 @@ class Login():
 			pass
 
 		self.login.hide()
+
+	def logout(self):
+		Login.con.logout()
+
 	
 		
 

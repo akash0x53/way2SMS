@@ -38,9 +38,9 @@ class Connect():
 		
 		#cookies=cl.CookieJar()
 		self.redirect=ul2.HTTPRedirectHandler()
-		#proxies=ul2.ProxyHandler(proxy)
+		proxies=ul2.ProxyHandler(self.proxy)
 
-		Connect.opener=ul2.build_opener(ul2.HTTPCookieProcessor(__cookies__),self.redirect)
+		Connect.opener=ul2.build_opener(ul2.HTTPCookieProcessor(__cookies__),self.redirect,proxies)
 
 	
 	def login(self,usr,pwd):
@@ -68,6 +68,14 @@ class Connect():
 		response=Connect.opener.open("http://site1.way2sms.com/QuickContacts","folder=dashboard")
 		return response.read()
 
+	def logout(self):
+		response=Connect.opener.open("http://site1.way2sms.com/LogOut","folder=inbox")
+
+	def send_msg(self,number,msg):
+		response=Connect.opener.open("http://site1.way2sms.com/quicksms.action","HiddenAction=instantsms&Action=sdf44557df54&MobNo="+number+"&textArea="+msg)
+		print response.geturl()
+		print urlparse.urlparse(response.geturl())[2]
+				
 
 
 if(__name__=='__main__'):
@@ -76,10 +84,13 @@ if(__name__=='__main__'):
 	
 
 	print c.login("8055737517","lovetakesover")
-	g=Contacts(c.getContacts())
+	print c.send_msg("8055737517","hello from App")
+	c.logout()
 
-	g.extract_name()
-	g.extract_number()
+	#g=Contacts(c.getContacts())
+
+	#g.extract_name()
+	#g.extract_number()
 	#print g
 
 

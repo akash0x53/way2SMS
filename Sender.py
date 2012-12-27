@@ -10,7 +10,7 @@ import Login
 
 count=140
 
-class Temp():
+class Sender():
 
 	def __init__(self):
 		self.build=gtk.Builder()
@@ -23,22 +23,25 @@ class Temp():
 		self.abt_menu=self.build.get_object("about")
 		self.abt_menu.connect("activate",self.show_about)
 
-		self.login=self.build.get_object("login_menu")
-		self.login.connect("activate",self.login_box)
+		login=self.build.get_object("login_menu")
+		login.connect("activate",self.login_box)
+
+		self.logout=self.build.get_object("logout_menu")
+		self.logout.connect("activate",self.logout_now)
 
 		#self.cred=self.build.get_object("credentials")
 		#self.cred.connect("activate",self.show_login_save)
 
-		Temp.contacts=self.build.get_object("contact_list")
+		Sender.contacts=self.build.get_object("contact_list")
 		
-		Temp.snd_btn=self.build.get_object("send_msg")
-		Temp.snd_btn.set_sensitive(False)
+		Sender.snd_btn=self.build.get_object("send_msg")
+		Sender.snd_btn.set_sensitive(False)
 
-		Temp.number_txt=self.build.get_object("enter_mobile_no")
-		Temp.msg_txt=self.build.get_object("enter_msg")
-		Temp.msg_txt.connect("key-press-event",self.check_chars)
+		Sender.number_txt=self.build.get_object("enter_mobile_no")
+		Sender.msg_txt=self.build.get_object("enter_msg")
+		Sender.msg_txt.connect("key-press-event",self.check_chars)
 	
-		Temp.msg_lbl=self.build.get_object("msg_lbl")
+		Sender.msg_lbl=self.build.get_object("msg_lbl")
 		
 		clr_btn=self.build.get_object("clr_all")
 		clr_btn.connect("clicked",self.clear_all)
@@ -52,7 +55,7 @@ class Temp():
 		abt=About.About()
 
 	def login_box(slef,event):
-		log=Login.Login(Temp.snd_btn,Temp.contacts)
+		Sender.login=Login.Login(Sender.snd_btn,Sender.contacts)
 	
 	def show_login_save(self,event):
 		log_save=Credentials.Credentials()
@@ -60,92 +63,33 @@ class Temp():
 	def check_chars(self,event,data):
 		global count
 		buf=""
-		Temp.msg_txt.get_buffer()
+		Sender.msg_txt.get_buffer()
 		print buf
 		count-=len(buf)
 
-		Temp.msg_lbl.set_text("Enter Text Message\n"+str(count)+" chars left")
+		Sender.msg_lbl.set_text("Enter Text Message\n"+str(count)+" chars left")
 		
-
-
 	def clear_all(self,event):
 		Temp.number_txt.set_text("")
 		txt=gtk.TextBuffer()
 		txt.set_data("",0)
 		Temp.msg_txt.set_buffer(txt)
 
-
-
-
-
-
-class Sender():
-
-	def __init__(self):
-
-		self.lbl=gtk.Label("Mobile No")
-		Sender.num_txt=gtk.TextView()
-
-
-		Sender.window=gtk.Window(gtk.WINDOW_TOPLEVEL)
-		Sender.window.set_title('Way2SMS Desktop App')
-
-
-		#connecting main_window signal "destroy"
-		Sender.window.connect("destroy",gtk.main_quit)
-
-		#horizontal box
-		v_box=gtk.VBox(homogeneous=False)
-		number=gtk.HBox(homogeneous=True)
-
-		#menu
-		connect_menu=gtk.Menu()
+	def logout_now(self,event):
+		try:
+			Sender.login.logout()
+			del Sender.login
+		except:
+			print 'You havent logged in, no need to logout dumbo'
 	
-		main_menu=gtk.MenuItem("Main")
-			
-		login=gtk.MenuItem("Login")
-		credentials=gtk.MenuItem("Credentials")
-		
-		connect_menu.append(login)
-		connect_menu.append(credentials)
-
-		main_menu.set_submenu(connect_menu)
-
-		login.show()
-		credentials.show()
-		main_menu.show()
-		
-		#menubar
-		menu_bar=gtk.MenuBar()
-		menu_bar.append(main_menu)
-		#add menubar on HBox
-		v_box.pack_start(menu_bar,expand=False,fill=False)
-		
-
-		#add hBox to window
-		Sender.window.set_border_width(5)
-		Sender.window.add(v_box)
-
-		#Menu End---
-
-		#Add mobile no box
-		v_box.pack_end(number,expand=False,fill=False)
-		number.pack_start(self.lbl)
-		number.pack_end(Sender.num_txt)
 
 
-		#show all
-		v_box.show()
-		number.show()
-		self.lbl.show()
-		Sender.num_txt.show()
-		menu_bar.show()
-		Sender.window.show()
-	
+
+
 
 
 if(__name__=="__main__"):
-	s=Temp()
+	s=Sender()
 	gtk.main()
 
 		
