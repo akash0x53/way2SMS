@@ -25,7 +25,8 @@ class Login():
 		Login.btn=btn
 		Login.c_list=c_list
 
-
+		
+		# FIXME: Autologin
 		#try:
 		#	pass_file=open(".pass","r")
 		#	usr.set_text(pass_file.read().rsplit()[0])
@@ -63,15 +64,7 @@ class Login():
 		Login.con.logout()
 
 	def send_msg(self,number,msg):
-		Login.con.send_msg(number,msg)
+		return Login.con.send_msg(number,msg)
 
 
-	
-		
-
-
-#if(__name__=="__main__"):
-#	l=Login()
-#	gtk.main()
-#	del l
 

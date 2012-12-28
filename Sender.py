@@ -2,13 +2,12 @@
 
 import pygtk
 import gtk
-
+from way2sms import isMsgSent
 
 import About
 import Login
-#import Credentials
+import gtk.keysyms as KeyMap
 
-count=140
 
 class Sender():
 
@@ -32,6 +31,7 @@ class Sender():
 		self.logout=self.build.get_object("logout_menu")
 		self.logout.connect("activate",self.logout_now)
 
+		#FIXME: Option Autologin, saving credentials
 		#self.cred=self.build.get_object("credentials")
 		#self.cred.connect("activate",self.show_login_save)
 
@@ -64,27 +64,37 @@ class Sender():
 
 
 	def max_limit(self,event,data):
+		if(data.keyval==KeyMap.BackSpace):
+			return False
 
-		print data
-		#print dir(data)
-
-		if(data.keyval=='BackSpace'):
-			print "backspace"
-			#	return Sender.isMaxLimit
+		return Sender.isMaxLimit
 
 
 	def send_msg(self,event):
-		#start,end=buf.get_selection_bounds()
-		msg=Sender.buf.get_text(Sender.buf.get_start_iter(),Sender.buf.get_end_iter())
+		buf=Sender.msg_txt.get_buffer()
+		
+		msg=buf.get_text(buf.get_start_iter(),buf.get_end_iter())
 		number=Sender.number_txt.get_text()
-		print "number: "+number+" msg: "+msg
-		Sender.login.send_msg(number,msg)
+		#print "number: "+number+" msg: "+msg
+		
+		isMsgSent=Sender.login.send_msg(number,msg)
 
+		if(isMsgSent==True):
+			msg_box=gtk.MessageDialog(parent=self.win,type=gtk.MESSAGE_INFO,buttons=gtk.BUTTONS_OK)
+			msg_box.set_markup("Message sent")
+			msg_box.run()
+			msg_box.hide()
+
+		elif(isMsgSent==False):
+			msg_box=gtk.MessageDialog(parent=self.win,type=gtk.MESSAGE_ERROR,buttons=gtk.BUTTONS_OK)
+			msg_box.set_markup("Something wrong!\nMessage Sending failed")
+			msg_box.run()
+			msg_box.hide()
 
 
 	def select_number(self,select):
 		(model,path)=select.get_selected_rows()
-		
+	
 		for p in path:
 			i=model.get_iter(p)
 			Sender.number_txt.set_text(model.get_value(i,1))
@@ -97,24 +107,23 @@ class Sender():
 	def login_box(slef,event):
 		Sender.login=Login.Login(Sender.snd_btn,Sender.contacts)
 	
-	def show_login_save(self,event):
-		log_save=Credentials.Credentials()
+	#FIXME: Autologin option.
+	#def show_login_save(self,event):
+	#	log_save=Credentials.Credentials() --- Function removed
 
 	def check_chars(self,event):
-		global count
+		
 		length=Sender.buf.get_char_count()+1
 
 		if(length>140):
 			print 'Max char limit reached!'
+			Sender.msg_lbl.set_text("Maximum character limit reached.")
 			Sender.isMaxLimit=True
-			#Sender.buf.get_text(Sender.buf.get_start_iter(),Sender.buf.get_end_iter()).
 		else:
 			Sender.isMaxLimit=False
+			Sender.msg_lbl.set_text("Enter Text Message\n(Max 140 chars)"
 
-		#count=count-length
-	
-		#Sender.msg_lbl.set_text("Enter Text Message\n"+str(count)+" chars left")
-		
+			
 	def clear_all(self,event):
 		Sender.number_txt.set_text("")
 		txt=gtk.TextBuffer()
@@ -135,7 +144,7 @@ class Sender():
 		print 'cleanup'
 		try:
 			self.logout_now(None)
-			print '''	
+			print '''
 					Thank you for using Way2SMS
 					Author: Akash Shende
 					------------------------------------------\n

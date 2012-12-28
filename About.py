@@ -14,7 +14,3 @@ class About():
 		abt_dialog.hide()
 
 
-#if(__name__=="__main__"):
-#	a=About()
-#	gtk.main()
-
