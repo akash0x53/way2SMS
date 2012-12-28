@@ -1,5 +1,10 @@
 #! /usr/bin/env python
 
+# Way2SMS Desktop-App
+# Author: Akash Shende
+# Contact: akash321@gmail.com
+
+
 from bs4 import BeautifulSoup as bs
 from way2sms import __contact_list__
 

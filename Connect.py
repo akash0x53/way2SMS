@@ -1,5 +1,10 @@
 #! /usr/bin/env python
 
+# Way2SMS Desktop-App
+# Author: Akash Shende
+# Contact: akash321@gmail.com
+
+
 from way2sms import *
 from way2sms import __cookies__
 from Contacts import Contacts

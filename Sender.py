@@ -1,5 +1,10 @@
 #! /usr/bin/env python
 
+# Way2SMS Desktop-App
+# Author: Akash Shende
+# Contact: akash321@gmail.com
+
+
 import pygtk
 import gtk
 from way2sms import isMsgSent
