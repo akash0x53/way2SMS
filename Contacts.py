@@ -18,8 +18,8 @@ class Contacts():
 		name_list=names.split("*")
 		
 
-		for n in name_list:
-			print n,"\n"
+		#for n in name_list:
+		#	print n,"\n"
 
 		return name_list
 
@@ -28,8 +28,8 @@ class Contacts():
 		numbers=str(numbers[0]['value'])
 		number_list=numbers.split(',')
 
-		for n in number_list:
-			print n,"\n"
+		#for n in number_list:
+		#	print n,"\n"
 
 		return number_list
 	
@@ -37,8 +37,7 @@ class Contacts():
 
 		list1=self.extract_name()
 		list2=self.extract_number()
-
-			
+		
 		for i in xrange(1,len(list1)):
 			Contacts.c_list.append([str(list1[i]),str(list2[i])])
 
