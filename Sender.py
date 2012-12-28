@@ -121,7 +121,7 @@ class Sender():
 			Sender.isMaxLimit=True
 		else:
 			Sender.isMaxLimit=False
-			Sender.msg_lbl.set_text("Enter Text Message\n(Max 140 chars)"
+			Sender.msg_lbl.set_text("Enter Text Message\n(Max 140 chars")
 
 			
 	def clear_all(self,event):
@@ -146,6 +146,7 @@ class Sender():
 			self.logout_now(None)
 			print '''
 					Thank you for using Way2SMS
+					Way2SMS-Desktop App 1.0 Copyright (C) 2012
 					Author: Akash Shende
 					------------------------------------------\n
 					Report bugs, suggestions@ akash321@gmail.com
