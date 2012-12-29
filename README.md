@@ -1,4 +1,4 @@
-Way2SMS-App
+Way2SMS-Desktop App
 =======
 
 Send SMS from your desktop computer to any mobile (india only). 
