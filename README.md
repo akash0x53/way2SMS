@@ -8,7 +8,8 @@ User must have a valid Way2SMS id,password
 Required Libraries
 ------
 1. gtk
-2. BeautifulSoup
+2. [BeautifulSoup](http://www.crummy.com/software/BeautifulSoup/)
+
 
 ###[More Info](http://akash0x53.github.com/blog/2012/12/29/send-sms-from-your-desktop/)
 
