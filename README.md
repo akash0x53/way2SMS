@@ -1,14 +1,14 @@
 Way2SMS-Desktop App
 =======
 
-Send SMS from your desktop computer to any mobile (india only). 
-This application is a desktop version of Way2SMS.com 
+Send SMS from your desktop to any mobile (india only). 
+This application is a desktop version of Way2SMS.com </br>
 User must have a valid Way2SMS id,password
 
-Required Extrnal Libraries of Python
+Required Libraries
 ==========
 1. gtk
-2. BeautifullSoup
+2. BeautifulSoup
 
 
 
