@@ -46,6 +46,8 @@ class Contacts():
 		for i in xrange(1,len(list1)):
 			Contacts.c_list.append([str(list1[i]),str(list2[i])])
 
+	
+
 
 
 

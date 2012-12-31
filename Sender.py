@@ -62,10 +62,44 @@ class Sender():
 		clr_btn=self.build.get_object("clr_all")
 		clr_btn.connect("clicked",self.clear_all)
 
+		Sender.contact_box=self.build.get_object("contact_add")
+		Sender.cont_name=self.build.get_object("contact_name")
+		Sender.cont_no=self.build.get_object("contact_no")
+		#save_btn=self.build.get_object("save_contact")
+		
+		cntct_menu=self.build.get_object("contact_menu")
+		cntct_menu.connect("activate",self.add_contact)
+
 	
 		self.win=self.build.get_object("main_win")
 		self.win.connect("destroy",gtk.main_quit)
 		self.win.show()
+
+	def add_contact(self,event):
+
+		if(Sender.contact_box.run()==1):
+			print 'contact saved'
+			print Sender.cont_name.get_text()
+			print Sender.cont_no.get_text()
+
+			if(Sender.login.add_contact(Sender.cont_name.get_text(),Sender.cont_no.get_text())):
+				msgbox=gtk.MessageDialog(parent=None,type=gtk.MESSAGE_INFO,buttons=gtk.BUTTONS_OK)
+				msgbox.set_markup("Contact added")
+				msgbox.run()
+			else:
+				msgbox=gtk.MessageDialog(parent=None,type=gtk.MESSAGE_ERROR,buttons=gtk.BUTTONS_OK)
+				msgbox.set_markup("Contact already exist")
+				msgbox.run()
+
+			msgbox.hide()	
+						
+		else:
+			print 'canceled'
+			pass
+
+		Sender.cont_name.set_text("")
+		Sender.cont_no.set_text("")
+		Sender.contact_box.hide()
 
 
 	def max_limit(self,event,data):

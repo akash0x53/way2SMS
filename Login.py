@@ -12,7 +12,6 @@ from Connect import Connect
 from Contacts import Contacts
 
 class Login():
-
 	
 	def __init__(self,btn,c_list):
 
@@ -59,7 +58,7 @@ class Login():
 				
 				#fetch contatcs data
 	
-			
+		
 		elif(res==2):
 			pass
 
@@ -70,6 +69,9 @@ class Login():
 
 	def send_msg(self,number,msg):
 		return Login.con.send_msg(number,msg)
+
+	def add_contact(self,name,no):
+		return Login.con.add_contact(name,no)
 
 
 

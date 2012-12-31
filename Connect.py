@@ -23,7 +23,7 @@ class Connect():
 		self.redirect=ul2.HTTPRedirectHandler()
 		proxies=ul2.ProxyHandler(self.proxy)
 
-		Connect.opener=ul2.build_opener(ul2.HTTPCookieProcessor(__cookies__),self.redirect)
+		Connect.opener=ul2.build_opener(ul2.HTTPCookieProcessor(__cookies__),self.redirect,proxies)
 		Connect.opener.addheaders=[('User-agent',user_agent),
 					('Accept','text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'),
 					('Accept-Language','en-US,en;q=0.8')]
@@ -73,5 +73,20 @@ class Connect():
 			return True
 
 		#print urlparse.urlparse(response.geturl())[2]
+
+	def add_contact(self,name,no):
+		body="HiddenAction=UserContacts&hidval=0&groupCombo=0&tfContactName="+name+"&tfMobileNum="+no+"&hidgrp=1&cmbgrp=0&select2=main&txta_contacts=aaa"
+
+		response=Connect.opener.open("http://site1.way2sms.com/FirstServlet",body)
+		response=response.geturl()
+
+		#print response
+		if(response.find("Exist")>0):
+			#print 'Contact exist'
+			return False
+		elif(response.find("added")>0):
+			return True
 				
+
+
 
