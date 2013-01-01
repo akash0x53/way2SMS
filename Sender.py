@@ -12,6 +12,7 @@ from way2sms import isMsgSent
 import About
 import Login
 import gtk.keysyms as KeyMap
+import os
 
 
 class Sender():
@@ -21,7 +22,7 @@ class Sender():
 		Sender.isMaxLimit=False
 
 		self.build=gtk.Builder()
-		self.glade=self.build.add_from_file("./ui/w2s.glade")
+		self.glade=self.build.add_from_file(os.getenv("PWD")+"/ui/w2s.glade")
 
 
 		self.ext_menu=self.build.get_object("exit")
