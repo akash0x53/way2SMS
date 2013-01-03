@@ -17,6 +17,10 @@ class Connect():
 
 	def __init__(self):
 		self.proxy={'http':'http://localhost:8080'}
+
+		random_server_no=random.randint(1,11)
+		Connect.server="http://site"+str(random_server_no)+".way2sms.com"
+	
 		#print __cookies__
 		
 		#cookies=cl.CookieJar()
@@ -32,12 +36,12 @@ class Connect():
 	
 	def login(self,usr,pwd):
 		try:
-
 			#print usr,pwd
-			response=Connect.opener.open("http://site1.way2sms.com/Login1.action","username="+usr+"&password="+pwd)
+			response=Connect.opener.open(Connect.server+"/Login1.action","username="+usr+"&password="+pwd)
 			redirected_url=response.geturl()
 			check_session_id=urlparse.urlparse(redirected_url)
 			session_id=check_session_id[len(check_session_id)-2]
+			print Connect.server
 
 			if(len(session_id)<=10): #NOTE session_id<=3|10
 				print 'Wrong mobile number or password'
@@ -52,14 +56,14 @@ class Connect():
 	
 
 	def getContacts(self):
-		response=Connect.opener.open("http://site1.way2sms.com/QuickContacts","folder=dashboard")
+		response=Connect.opener.open(Connect.server+"/QuickContacts","folder=dashboard")
 		return response.read()
 
 	def logout(self):
-		response=Connect.opener.open("http://site1.way2sms.com/LogOut","folder=inbox")
+		response=Connect.opener.open(Connect.server+"/LogOut","folder=inbox")
 
 	def send_msg(self,number,msg):
-		response=Connect.opener.open("http://site1.way2sms.com/quicksms.action","HiddenAction=instantsms&Action=sdf44557df54&MobNo="+number+"&textArea="+msg)
+		response=Connect.opener.open(Connect.server+"/quicksms.action","HiddenAction=instantsms&Action=sdf44557df54&MobNo="+number+"&textArea="+msg)
 
 		#print response.geturl()
 
@@ -78,7 +82,7 @@ class Connect():
 	def add_contact(self,name,no):
 		body="HiddenAction=UserContacts&hidval=0&groupCombo=0&tfContactName="+name+"&tfMobileNum="+no+"&hidgrp=1&cmbgrp=0&select2=main&txta_contacts=aaa"
 
-		response=Connect.opener.open("http://site1.way2sms.com/FirstServlet",body)
+		response=Connect.opener.open(Connect.server+"/FirstServlet",body)
 		response=response.geturl()
 
 		#print response
@@ -88,6 +92,4 @@ class Connect():
 		elif(response.find("added")>0):
 			return True
 				
-
-
 
