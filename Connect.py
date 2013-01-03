@@ -18,7 +18,7 @@ class Connect():
 	def __init__(self):
 		self.proxy={'http':'http://localhost:8080'}
 
-		random_server_no=random.randint(1,11)
+		#random_server_no=random.randint(1,11)
 		Connect.server="http://site"+str(random_server_no)+".way2sms.com"
 	
 		#print __cookies__
@@ -65,7 +65,7 @@ class Connect():
 	def send_msg(self,number,msg):
 		response=Connect.opener.open(Connect.server+"/quicksms.action","HiddenAction=instantsms&Action=sdf44557df54&MobNo="+number+"&textArea="+msg)
 
-		#print response.geturl()
+		print response.geturl()
 
 		temp=response.geturl()
 		cnt=temp.find("successfully")
