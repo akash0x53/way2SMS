@@ -15,6 +15,3 @@ User must have a valid Way2SMS id,password
 
 ###[More Info](http://akash0x53.github.com/blog/2012/12/29/send-sms-from-your-desktop/)
 
-
-
-
