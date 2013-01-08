@@ -28,7 +28,7 @@ class Connect():
 		#NOTE:if you want to have proxy, use this handler. put proxies in opener
 		proxies=ul2.ProxyHandler(self.proxy) 
 
-		Connect.opener=ul2.build_opener(ul2.HTTPCookieProcessor(__cookies__),self.redirect)
+		Connect.opener=ul2.build_opener(ul2.HTTPCookieProcessor(__cookies__),self.redirect,proxies)
 		Connect.opener.addheaders=[('User-agent',user_agent),
 					('Accept','text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'),
 					('Accept-Language','en-US,en;q=0.8')]
@@ -40,14 +40,15 @@ class Connect():
 			response=Connect.opener.open(Connect.server+"/Login1.action","username="+usr+"&password="+pwd)
 			redirected_url=response.geturl()
 			check_session_id=urlparse.urlparse(redirected_url)
-			session_id=check_session_id[len(check_session_id)-2]
+			Connect.session_id=check_session_id[len(check_session_id)-2]
 			print Connect.server
 
-			if(len(session_id)<=10): #NOTE session_id<=3|10
+			if(len(Connect.session_id)<=10): #NOTE session_id<=3|10
 				print 'Wrong mobile number or password'
 				return login_failed
 			else:
-				print "Session id: "+session_id
+				print "Session id: "+Connect.session_id
+
 				return login_success
 
 		except IOError:
@@ -56,14 +57,20 @@ class Connect():
 	
 
 	def getContacts(self):
-		response=Connect.opener.open(Connect.server+"/QuickContacts","folder=dashboard")
+		#generate token=Session_ID
+		Connect.token=list()
+		for i in range(3,len(Connect.session_id)):
+			Connect.token.append(Connect.session_id[i])
+		print Connect.token
+
+		response=Connect.opener.open(Connect.server+"/QuickContacts","folder=dashboard&Token="+''.join(Connect.token))
 		return response.read()
 
 	def logout(self):
-		response=Connect.opener.open(Connect.server+"/LogOut","folder=inbox")
+		response=Connect.opener.open(Connect.server+"/LogOut","folder=inbox&token="+''.join(Connect.token))
 
 	def send_msg(self,number,msg):
-		response=Connect.opener.open(Connect.server+"/quicksms.action","HiddenAction=instantsms&Action=sdf44557df54&MobNo="+number+"&textArea="+msg)
+		response=Connect.opener.open(Connect.server+"/quicksms.action","HiddenAction=instantsms&Action=sdf44557df54&MobNo="+number+"&textArea="+msg+"&token="+''.join(Connect.token))
 
 		print response.geturl()
 
@@ -80,7 +87,7 @@ class Connect():
 		#print urlparse.urlparse(response.geturl())[2]
 
 	def add_contact(self,name,no):
-		body="HiddenAction=UserContacts&hidval=0&groupCombo=0&tfContactName="+name+"&tfMobileNum="+no+"&hidgrp=1&cmbgrp=0&select2=main&txta_contacts=aaa"
+		body="HiddenAction=UserContacts&hidval=0&groupCombo=0&tfContactName="+name+"&tfMobileNum="+no+"&hidgrp=1&cmbgrp=0&select2=main&txta_contacts=aaa&token="+''.join(Connect.token)
 
 		response=Connect.opener.open(Connect.server+"/FirstServlet",body)
 		response=response.geturl()
