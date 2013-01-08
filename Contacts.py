@@ -14,11 +14,12 @@ class Contacts():
 	def __init__(self,html_data,c_list):
 		#creating soup
 		Contacts.soup=bs(''.join(html_data))
-
+		
 		Contacts.c_list=c_list
 		
 	def extract_name(self):
 		names=Contacts.soup.findAll(attrs={"name":"Quckvalue"})
+		print names
 		names=str(names[0]['value'])
 		name_list=names.split("*")
 		
