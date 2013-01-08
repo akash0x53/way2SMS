@@ -28,7 +28,7 @@ class Connect():
 		#NOTE:if you want to have proxy, use this handler. put proxies in opener
 		proxies=ul2.ProxyHandler(self.proxy) 
 
-		Connect.opener=ul2.build_opener(ul2.HTTPCookieProcessor(__cookies__),self.redirect,proxies)
+		Connect.opener=ul2.build_opener(ul2.HTTPCookieProcessor(__cookies__),self.redirect)
 		Connect.opener.addheaders=[('User-agent',user_agent),
 					('Accept','text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'),
 					('Accept-Language','en-US,en;q=0.8')]
