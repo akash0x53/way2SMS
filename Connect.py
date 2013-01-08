@@ -61,7 +61,7 @@ class Connect():
 		Connect.token=list()
 		for i in range(3,len(Connect.session_id)):
 			Connect.token.append(Connect.session_id[i])
-		print Connect.token
+		#print Connect.token
 
 		response=Connect.opener.open(Connect.server+"/QuickContacts","folder=dashboard&Token="+''.join(Connect.token))
 		return response.read()
@@ -72,7 +72,7 @@ class Connect():
 	def send_msg(self,number,msg):
 		response=Connect.opener.open(Connect.server+"/quicksms.action","HiddenAction=instantsms&Action=sdf44557df54&MobNo="+number+"&textArea="+msg+"&token="+''.join(Connect.token))
 
-		print response.geturl()
+		#print response.geturl()
 
 		temp=response.geturl()
 		cnt=temp.find("successfully")
