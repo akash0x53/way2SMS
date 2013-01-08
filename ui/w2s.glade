@@ -598,15 +598,6 @@ akash0x53@gmail.com</property>
                       </object>
                     </child>
                     <child>
-                      <object class="GtkMenuItem" id="logout_menu">
-                        <property name="use_action_appearance">False</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Logout</property>
-                        <property name="use_underline">True</property>
-                      </object>
-                    </child>
-                    <child>
                       <object class="GtkMenuItem" id="exit">
                         <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
@@ -646,30 +637,6 @@ akash0x53@gmail.com</property>
               </object>
             </child>
             <child>
-              <object class="GtkMenuItem" id="menuitem1">
-                <property name="use_action_appearance">False</property>
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Contacts</property>
-                <property name="use_underline">True</property>
-                <child type="submenu">
-                  <object class="GtkMenu" id="menu3">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <child>
-                      <object class="GtkMenuItem" id="contact_menu">
-                        <property name="use_action_appearance">False</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Add Contact</property>
-                        <property name="use_underline">True</property>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child>
               <object class="GtkMenuItem" id="help_menu">
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
@@ -677,7 +644,7 @@ akash0x53@gmail.com</property>
                 <property name="label" translatable="yes">Help</property>
                 <property name="use_underline">True</property>
                 <child type="submenu">
-                  <object class="GtkMenu" id="menu2">
+                  <object class="GtkMenu" id="menu4">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <child>
