@@ -19,7 +19,7 @@ class Contacts():
 		
 	def extract_name(self):
 		names=Contacts.soup.findAll(attrs={"name":"Quckvalue"})
-		print names
+		#print names
 		names=str(names[0]['value'])
 		name_list=names.split("*")
 		
