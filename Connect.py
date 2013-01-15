@@ -39,6 +39,7 @@ class Connect():
 			#print usr,pwd
 			response=Connect.opener.open(Connect.server+"/Login1.action","username="+usr+"&password="+pwd)
 			redirected_url=response.geturl()
+			print redirected_url
 			check_session_id=urlparse.urlparse(redirected_url)
 			Connect.session_id=check_session_id[len(check_session_id)-2]
 			print Connect.server
@@ -70,7 +71,7 @@ class Connect():
 		response=Connect.opener.open(Connect.server+"/LogOut","folder=inbox&token="+''.join(Connect.token))
 
 	def send_msg(self,number,msg):
-		response=Connect.opener.open(Connect.server+"/quicksms.action","HiddenAction=instantsms&Action=sdf44557df54&MobNo="+number+"&textArea="+msg+"&token="+''.join(Connect.token))
+		response=Connect.opener.open(Connect.server+"/quicksms.action","HiddenAction=instantsms&expensive=sdf44557df54&MobNo="+number+"&textArea="+msg+"&embassy="+''.join(Connect.token))
 
 		#print response.geturl()
 
@@ -87,7 +88,7 @@ class Connect():
 		#print urlparse.urlparse(response.geturl())[2]
 
 	def add_contact(self,name,no):
-		body="HiddenAction=UserContacts&hidval=0&groupCombo=0&tfContactName="+name+"&tfMobileNum="+no+"&hidgrp=1&cmbgrp=0&select2=main&txta_contacts=aaa&token="+''.join(Connect.token)
+		body="HiddenAction=UserContacts&hidval=0&groupCombo=0&tfContactName="+name+"&tfMobileNum="+no+"&hidgrp=1&cmbgrp=0&select2=main&txta_contacts=aaa&Token="+''.join(Connect.token)
 
 		response=Connect.opener.open(Connect.server+"/FirstServlet",body)
 		response=response.geturl()
