@@ -71,7 +71,7 @@ class Connect():
 		response=Connect.opener.open(Connect.server+"/LogOut","folder=inbox&token="+''.join(Connect.token))
 
 	def send_msg(self,number,msg):
-		response=Connect.opener.open(Connect.server+"/quicksms.action","HiddenAction=instantsms&expensive=sdf44557df54&MobNo="+number+"&textArea="+msg+"&embassy="+''.join(Connect.token))
+		response=Connect.opener.open(Connect.server+"/sndqs.action","HiddenAction=instantsms&expensive=sdf44557df54&MobNo="+number+"&textArea="+msg+"&embassy="+''.join(Connect.token))
 
 		#print response.geturl()
 
