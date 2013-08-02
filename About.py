@@ -2,7 +2,7 @@
 
 # Way2SMS Desktop-App
 # Author: Akash Shende
-# Contact: akash321@gmail.com
+# Contact: akash0x53s@gmail.com
 
 
 import gtk
